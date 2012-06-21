@@ -1,0 +1,29 @@
+Name:           HsCharts
+Version:        1.0
+Author:         Pier Janssen, Maciej Wichrowski
+Synopsis:       A simple charts drawing module, using the Gloss drawing library
+Category:       Charts
+License:        BSD3
+License-File:   LICENSE
+Homepage:       https://github.com/wicher/HsCharts
+Bug-Reports:    https://github.com/wicher/HsCharts/issues
+Stability:      experimental
+Cabal-Version:  >= 1.6
+Build-Type:     Simple
+
+Tested-with: GHC == 7.0.4
+
+Library
+  Build-Depends:
+        base == 4.*, 
+        gloss >= 1.2
+        
+  ghc-options: -O2 -Wall
+  
+  Exposed-Modules:
+        Graphics.HsCharts
+        Graphics.HsCharts.Charts
+        Graphics.HsCharts.Shapes
+
+  Other-Modules:
+        Graphics.HsCharts.Helpers
