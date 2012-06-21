@@ -1,0 +1,21 @@
+Name:                HsChartsDemo
+Version:             1.0
+Synopsis:            A demo for HsCharts
+Homepage:            https://github.com/wicher/HsCharts
+License:             BSD3
+Author:              Pier Janssen, Maciej Wichrowski
+Category:            Graphics
+Build-type:          Simple
+Cabal-version:       >=1.2
+
+
+Executable demo
+    Main-is:
+        Main.hs
+  
+    ghc-options: -O2 -Wall
+    
+    Build-depends:
+        base == 4.*,
+        gloss >= 1.2,
+        HsCharts >= 1.0
