@@ -31,6 +31,10 @@ Installation
 3. Change the directory to the unpacked tarball directory, or `source/` if you're using the repository.
 4. Run the command `cabal install`
 
+License
+-------
+HsCharts is licensed under BSD3, see `LICENSE` for the complete license.
+
 Credits
 -------
 Pier Janssen, Maciej Wichrowski
