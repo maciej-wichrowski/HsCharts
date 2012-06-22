@@ -157,7 +157,7 @@ gridPoints axis i minDist = reduceGrid pts []
         reduceGrid (_:[])     ac                   = ac
         reduceGrid (x1:x2:xs) ac | keepPoint x1 x2 = reduceGrid (x2:xs) (ac ++ [x1, x2])
                                  | otherwise       = reduceGrid (x1:xs) ac
-        keepPoint (_, y1) (_, y2) = y2 - y1 > minDist
+        keepPoint (a, a') (b, b') = a >= min && b <= max && b' - a' >= minDist
 
 
 -- | Renders the scale values for the chart's axes.
