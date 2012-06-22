@@ -36,9 +36,8 @@ Demo
 To build and run the demo application, perform the following steps:
 
 1. Go to the `demo/` directory.
-2. `cabal configure`
-3. `cabal build`
-4. Start the demo using `./dist/build/demo/demo`
+2. Build and install the demo: `cabal install`
+3. Start the demo using `HsChartsDemo`
 
 License
 -------
