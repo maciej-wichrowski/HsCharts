@@ -84,8 +84,10 @@ autoScaleAxis' :: AxisScaleType -> Float -> [Float] -> Axis
 autoScaleAxis' t len pts = fixedScaleAxis t len (minimum [0, minimum pts])
                                                 (maximum [0, maximum pts])
 
+getAxisScale :: Float -> Float -> Float -> Float
 getAxisScale len min max = len / (max - min)
 
+getAxisCrossingPt :: Float -> Float -> Float -> Float -> Float
 getAxisCrossingPt len min max scale | min > 0   = 0
                                     | max < 0   = len
                                     | otherwise = scale * abs min
@@ -317,7 +319,7 @@ boxPlots xAxis yAxis w c pts =
 
 -----------------------------------------------------------------------------
 
-    
+polarToCartesian :: Point2 -> Point2
 polarToCartesian (a, r) = (r * cos a, r * sin a)
 
 -- | Renders a data series in a polar coordinate system.

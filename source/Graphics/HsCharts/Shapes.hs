@@ -4,7 +4,7 @@ import Graphics.Gloss
 -- | Creates an equilateral triangle (all sides same length) of the specified size.
 eqTrianglePath :: Float -> Path
 eqTrianglePath s = [(-s', -h), (s', -h), (0, h)]
-    where h  = 0.5 * sqrt ((s ^ 2) - (s' ^ 2))
+    where h  = 0.5 * sqrt ((s ** 2) - (s' ** 2))
           s' = 0.5 * s
 
 -- | Draws a solid equilateral triangle (all sides same length) of the specified size.

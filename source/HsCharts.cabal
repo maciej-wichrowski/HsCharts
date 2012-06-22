@@ -18,7 +18,7 @@ Library
         base == 4.*, 
         gloss >= 1.2
         
-  ghc-options: -O2 -Wall
+  ghc-options: -O2
   
   Exposed-Modules:
         Graphics.HsCharts
