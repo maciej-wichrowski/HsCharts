@@ -1,6 +1,7 @@
 module Main where
 
 import Graphics.HsCharts
+import Graphics.HsCharts.Shapes
 import Graphics.Gloss
 
 main :: IO ()

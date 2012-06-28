@@ -22,8 +22,17 @@ Library
   
   Exposed-Modules:
         Graphics.HsCharts
-        Graphics.HsCharts.Charts
         Graphics.HsCharts.Shapes
-
+        
   Other-Modules:
-        Graphics.HsCharts.Helpers
+        Graphics.HsCharts.Types
+        Graphics.HsCharts.Components.Axis
+        Graphics.HsCharts.Components.Background
+        Graphics.HsCharts.Components.Grid
+        Graphics.HsCharts.Plots.AreaChart
+        Graphics.HsCharts.Plots.BarChart
+        Graphics.HsCharts.Plots.BoxPlot
+        Graphics.HsCharts.Plots.BubbleChart
+        Graphics.HsCharts.Plots.LineChart
+        Graphics.HsCharts.Plots.PolarChart
+        Graphics.HsCharts.Plots.ScatterPlot

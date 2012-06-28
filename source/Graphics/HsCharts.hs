@@ -1,6 +1,5 @@
 module Graphics.HsCharts
-	( module Graphics.HsCharts.Shapes 
-	, module Graphics.HsCharts.Types
+	( module Graphics.HsCharts.Types
 	, module Graphics.HsCharts.Components.Axis
 	, module Graphics.HsCharts.Components.Background
 	, module Graphics.HsCharts.Components.Grid
@@ -14,7 +13,6 @@ module Graphics.HsCharts
 	)
 where
 
-import Graphics.HsCharts.Shapes
 import Graphics.HsCharts.Types
 import Graphics.HsCharts.Components.Axis
 import Graphics.HsCharts.Components.Background
