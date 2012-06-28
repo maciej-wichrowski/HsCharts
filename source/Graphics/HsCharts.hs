@@ -1,16 +1,16 @@
 module Graphics.HsCharts
-	( module Graphics.HsCharts.Types
-	, module Graphics.HsCharts.Components.Axis
-	, module Graphics.HsCharts.Components.Background
-	, module Graphics.HsCharts.Components.Grid
-	, module Graphics.HsCharts.Plots.AreaChart
-	, module Graphics.HsCharts.Plots.BarChart
-	, module Graphics.HsCharts.Plots.BoxPlot
-	, module Graphics.HsCharts.Plots.BubbleChart
+    ( module Graphics.HsCharts.Types
+    , module Graphics.HsCharts.Components.Axis
+    , module Graphics.HsCharts.Components.Background
+    , module Graphics.HsCharts.Components.Grid
+    , module Graphics.HsCharts.Plots.AreaChart
+    , module Graphics.HsCharts.Plots.BarChart
+    , module Graphics.HsCharts.Plots.BoxPlot
+    , module Graphics.HsCharts.Plots.BubbleChart
     , module Graphics.HsCharts.Plots.LineChart
     , module Graphics.HsCharts.Plots.PolarChart
     , module Graphics.HsCharts.Plots.ScatterPlot
-	)
+    )
 where
 
 import Graphics.HsCharts.Types
