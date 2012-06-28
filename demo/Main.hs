@@ -175,8 +175,8 @@ polarChartPict = plotPictures [ toPicture defaultBackground
                               , toPicture $ polarChart (color pointColor' . line) pts' ]
                               aAxis
                               rAxis
-     where aAxis = angularAxis chartW
-           rAxis = radialAxis Linear chartH 0 (pi / 2)
+     where aAxis = angularAxisScale chartW
+           rAxis = radialAxisScale Linear chartH 0 (pi / 2)
            xs    = map ((2 * pi / 100) * ) [0..100]
            ys    = map (\x -> sin (4 * x) ) xs
            xs'   = map ((4 * pi / 100) * ) [0..100]

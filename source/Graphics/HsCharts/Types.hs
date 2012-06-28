@@ -27,17 +27,21 @@ class ToPicture a where
     toPicture :: a -> AxisScale -> AxisScale -> Picture
 
 
-plotPictures :: [AxisScale -> AxisScale -> Picture] -> AxisScale -> AxisScale -> Picture
+-- | Maps two axes onto a list of toPicture functions.
+plotPictures :: [AxisScale -> AxisScale -> Picture] -- ^ A list of toPicture functions.
+             -> AxisScale -- ^ Horizontal axis.
+             -> AxisScale -- ^ Vertical axis.
+             -> Picture
 plotPictures cs xAxis yAxis = pictures $ map (\f -> f xAxis yAxis) cs
 
 
 -----------------------------------------------------------------------------
 
 
-data AxisScale = AxisScale { axisLength  :: Float
-                           , axisMin     :: Float
-                           , axisMax     :: Float
-                           , axisScaleFn :: Float -> Float
+data AxisScale = AxisScale { axisLength  :: Float -- ^ The length of the axis in pixels.
+                           , axisMin     :: Float -- ^ The minimum value of the axis.
+                           , axisMax     :: Float -- ^ The maximum value of the axis.
+                           , axisScaleFn :: Float -> Float -- ^ A function to scale axis points to pixels.
                            }
 
 data AxisScaleType = Linear | Log 
@@ -98,12 +102,13 @@ logScale len zero min max x = zero + len * (log x - min') / (max' - min')
 
 -----------------------------------------------------------------------------
 
-
+-- | Scales a list of 'Point2' values.
 scalePoints :: AxisScale -> AxisScale -> [Point2] -> [Point2]
 scalePoints xAxis yAxis pts = zip (map (axisScaleFn xAxis) xs) 
                                   (map (axisScaleFn yAxis) ys)
     where (xs, ys) = unzip pts
-    
+
+-- | Gets the pixel location of the 0 value on an axis.
 getAxisZero :: AxisScale -> Float
 getAxisZero axis | axisMin axis > 0 = 0
                  | axisMax axis < 0 = axisLength axis

@@ -1,7 +1,12 @@
+-- | A renderable axis, with grid lines and scales.
+--
+--   The step sizes automatically adjusts to avoid the lines from getting too 
+--   close to each other. If the step-size is 0, no lines will be drawn.
 module Graphics.HsCharts.Components.Axis
 (
-      AxisPosition(..)
-    , Axis
+      Axis
+    , AxisPosition(..)
+    -- * Constructors
     , axis
     , axis'
     , defaultHAxis
@@ -14,15 +19,6 @@ import Numeric
 
 -----------------------------------------------------------------------------
 
-data AxisPosition = AHorizontal
-                  | AVertical
-                  | ALeft
-                  | ARight
-                  | ATop
-                  | ABottom
-    deriving ( Eq, Show )
-
-
 data Axis = Axis { axisNumOffset     :: Float
                  , axisGridOffset    :: Float
                  , axisPosition      :: AxisPosition
@@ -31,15 +27,35 @@ data Axis = Axis { axisNumOffset     :: Float
                  , axisGridStepMinor :: Float
                  }
 
-axis :: AxisPosition -> Float -> Float -> Float -> Axis
+data AxisPosition = AHorizontal -- ^ Horizontal axis; its position is determined by the vertical axis.
+                  | AVertical   -- ^ Vertical axis; its position is determined by the horizontal axis.
+                  | ALeft       -- ^ Vertical axis on the leftmost side of the chart.
+                  | ARight      -- ^ Vertical axis on the rightmost side of the chart.
+                  | ATop        -- ^ Horizontal axis at the top of the chart.
+                  | ABottom     -- ^ Horizontal axis at the bottom of the chart.
+    deriving ( Eq, Show )
+
+axis :: AxisPosition -- ^ Position of the axis.
+     -> Float        -- ^ Scale step size.
+     -> Float        -- ^ Major grid lines step size.
+     -> Float        -- ^ Minor grid lines step size.
+     -> Axis
 axis = axis' 0 0
 
-axis' :: Float -> Float -> AxisPosition -> Float -> Float -> Float -> Axis
+axis' :: Float        -- ^ Scale offset.
+      -> Float        -- ^ Grid lines offset.
+      -> AxisPosition -- ^ Position of the axis.
+      -> Float        -- ^ Scale step size.
+      -> Float        -- ^ Major grid lines step size.
+      -> Float        -- ^ Minor grid lines step size.
+      -> Axis
 axis' = Axis
 
+-- | The default horizontal axis, with numbers and minor grid lines step size of 1.
 defaultHAxis :: Axis
 defaultHAxis = axis AHorizontal 1 0 1
 
+-- | The default vertical axis, with numbers and minor grid lines step size of 1.
 defaultVAxis :: Axis
 defaultVAxis = axis AVertical 1 0 1
 

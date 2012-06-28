@@ -1,3 +1,4 @@
+-- | Various compound Gloss shapes.
 module Graphics.HsCharts.Shapes where
 import Graphics.Gloss
 

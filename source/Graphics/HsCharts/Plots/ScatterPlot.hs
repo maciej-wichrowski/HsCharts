@@ -1,6 +1,7 @@
 module Graphics.HsCharts.Plots.ScatterPlot
 (
       ScatterPlot
+    -- * Constructors
     , scatterPlot
     , defaultScatterPlot
 ) where
@@ -13,7 +14,9 @@ data ScatterPlot = ScatterPlot { pict   :: Picture
                                , points :: [Point2] }
 
 -- | Scatter plot constructor.
-scatterPlot :: Picture -> [Point2] -> ScatterPlot
+scatterPlot :: Picture     -- ^ Point picture.
+            -> [Point2]    -- ^ The data points to be plotted.
+            -> ScatterPlot
 scatterPlot = ScatterPlot
 
 -- | Creates a scatter plot with the default picture (2px square)

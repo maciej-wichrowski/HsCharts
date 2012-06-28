@@ -1,6 +1,7 @@
 module Graphics.HsCharts.Components.Background
 (
       Background
+    -- * Constructors
     , background
     , defaultBackground
 ) where
@@ -11,9 +12,11 @@ import Graphics.HsCharts.Types
 
 data Background = Background { bgColor :: Color }
 
+-- | Creates a background with the specified color.
 background :: Color -> Background
 background = Background
 
+-- | Creates a default (light-grey) background.
 defaultBackground :: Background
 defaultBackground = background (greyN 0.98)
 

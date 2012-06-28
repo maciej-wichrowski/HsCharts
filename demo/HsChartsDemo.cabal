@@ -1,5 +1,5 @@
 Name:                HsChartsDemo
-Version:             1.0
+Version:             1.1
 Synopsis:            A demo for HsCharts
 Homepage:            https://github.com/wicher/HsCharts
 License:             BSD3
@@ -18,4 +18,4 @@ Executable HsChartsDemo
     Build-depends:
         base == 4.*,
         gloss >= 1.2,
-        HsCharts >= 1.0
+        HsCharts >= 1.1

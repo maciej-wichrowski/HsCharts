@@ -1,8 +1,14 @@
+-- | Renders a grid on the background area of a chart.
+--
+--   The step size automatically adjusts to avoid the lines from getting too 
+--   close to each other. If the step-size is 0, no lines will be drawn.
 module Graphics.HsCharts.Components.Grid
 (
       Grid
+    -- * Constructors
     , grid
     , defaultGrid
+    -- * Other functions
     , gridPoints
     , gridPoints'
 ) where
@@ -16,9 +22,14 @@ data Grid = Grid { gridColor :: Color
                  , vStep :: Float
                  }
 
-grid :: Color -> Float -> Float -> Grid
+-- | Grid constructor
+grid :: Color -- ^ Grid color.
+     -> Float -- ^ Horizontal grid size.
+     -> Float -- ^ Vertical grid size.
+     -> Grid
 grid = Grid
 
+-- | The default (light-grey) grid, with vertical and horizontal size 1.
 defaultGrid :: Grid
 defaultGrid = Grid (greyN 0.8) 1 1
 
@@ -27,11 +38,6 @@ defaultGrid = Grid (greyN 0.8) 1 1
 instance ToPicture Grid where
     toPicture g = gridToPicture (gridColor g) (hStep g) (vStep g)
     
-
--- | Renders a grid on the background area of a chart.
---
---   The step size automatically adjusts to avoid the lines from getting too 
---   close to each other. If the step-size is 0, no lines will be drawn.
 gridToPicture :: Color -> Float -> Float -> AxisScale -> AxisScale -> Picture
 gridToPicture c iX iY xAxis yAxis = color c $ pictures $ gridX ++ gridY
     where
@@ -41,16 +47,20 @@ gridToPicture c iX iY xAxis yAxis = color c $ pictures $ gridX ++ gridY
         lineY (_, y) = line [ (0, y), (axisLength xAxis, y) ]
 
 -----------------------------------------------------------------------------
-        
-gridPoints :: AxisScale -> Float -> Float -> [(Float, Float)]
+
+-- | Generates a list of points on the grid.
+gridPoints :: AxisScale        -- ^ Axis scale to generate grid points for.
+           -> Float            -- ^ Preferred step size.
+           -> Float            -- ^ Minimal distance in pixels between the points.
+           -> [(Float, Float)] -- ^ A list of grid points (axis value, scaled value).
 gridPoints = gridPoints' 0
 
---Note: due to floating point precision, the steps may not increase by exactly i.
+
 gridPoints' :: Float            -- ^ Start offset
             -> AxisScale        -- ^ Axis scale to generate grid points for.
             -> Float            -- ^ Preferred step size.
             -> Float            -- ^ Minimal distance in pixels between the points.
-            -> [(Float, Float)]
+            -> [(Float, Float)] -- ^ A list of grid points (axis value, scaled value).
 gridPoints' _ _    0 _       = []
 gridPoints' o axis i minDist = reduceGrid pts []
     where

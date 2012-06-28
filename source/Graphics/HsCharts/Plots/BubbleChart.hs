@@ -1,8 +1,11 @@
 module Graphics.HsCharts.Plots.BubbleChart
 (
       BubbleChart
+    -- * Constructors
     , bubbleChart
     , defaultBubbleChart
+    -- * Other functions
+    , defaultBubbleFn
 ) where
 import Graphics.Gloss
 import Graphics.HsCharts.Types
@@ -13,15 +16,20 @@ data BubbleChart = BubbleChart { bubbleFn   :: Point3 -> Picture
                                , zAxis      :: AxisScale
                                , points     :: [Point3] }
 
--- | Line Chart constructor.
-bubbleChart :: (Point3 -> Picture) -> AxisScale -> [Point3] -> BubbleChart
+-- | Bubble Chart constructor.
+bubbleChart :: (Point3 -> Picture) -- ^ Rendering function for each bubble.
+            -> AxisScale           -- ^ The z-axis scale.
+            -> [Point3]            -- ^ Points to be plotted.
+            -> BubbleChart
 bubbleChart = BubbleChart
 
+-- | Creates a bubble chart with the default rendering function.
 defaultBubbleChart :: AxisScale -> [Point3] -> BubbleChart
-defaultBubbleChart = bubbleChart defaultBubbleFn
+defaultBubbleChart = bubbleChart (defaultBubbleFn defaultBubbleColor)
 
-defaultBubbleFn :: Point3 -> Picture
-defaultBubbleFn (_, _, z) = pictures [ color defaultBubbleColor (circleSolid z)
+-- | The default bubble rendering function.
+defaultBubbleFn :: Color -> Point3 -> Picture
+defaultBubbleFn c (_, _, z) = pictures [ color c (circleSolid z)
                                      , thickCircle z 1.5 ]
 
 defaultBubbleColor :: Color

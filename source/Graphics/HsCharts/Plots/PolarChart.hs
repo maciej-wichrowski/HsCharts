@@ -1,11 +1,12 @@
+-- | Renders a chart in polar coordinates. Angle values are in radians!
 module Graphics.HsCharts.Plots.PolarChart
 (
       PolarChart
     , polarChart
     , defaultPolarChart
     -- * Axes
-    , angularAxis
-    , radialAxis
+    , angularAxisScale
+    , radialAxisScale
     -- * Grid
     , PolarGrid
     , polarGrid
@@ -17,13 +18,13 @@ import Graphics.HsCharts.Components.Grid
 -----------------------------------------------------------------------------
 
 -- | Creates an Axis to be used as the angular axis in a polar chart.
-angularAxis :: Float -- ^ Chart width.
-            -> AxisScale
-angularAxis len  = AxisScale len 0 (2 * pi) id
+angularAxisScale :: Float -- ^ Chart width.
+                 -> AxisScale
+angularAxisScale len = AxisScale len 0 (2 * pi) id
 
 -- | Creates an Axis to be used as the radial axis in a polar chart.
-radialAxis :: AxisScaleType -> Float -> Float -> Float -> AxisScale
-radialAxis t len min max = (fixedAxisScale t (len / 2) min max) { axisLength = len }
+radialAxisScale :: AxisScaleType -> Float -> Float -> Float -> AxisScale
+radialAxisScale t len min max = (fixedAxisScale t (len / 2) min max) { axisLength = len }
 
 -----------------------------------------------------------------------------
 
@@ -34,6 +35,7 @@ data PolarChart = PolarChart { renderFn :: ([Point2] -> Picture)
 polarChart :: ([Point2] -> Picture) -> [Point2] -> PolarChart
 polarChart = PolarChart
 
+-- | Creates a default polar chart, using a line rendering function.
 defaultPolarChart :: [Point2] -> PolarChart
 defaultPolarChart = PolarChart line
 
@@ -42,6 +44,7 @@ defaultPolarChart = PolarChart line
 instance ToPicture PolarChart where
     toPicture = polarChartToPicture
     
+polarChartToPicture :: PolarChart -> AxisScale -> AxisScale -> Picture
 polarChartToPicture p aAxis rAxis = renderFn p cartesianPts
     where
         r               = axisLength rAxis / 2
@@ -59,7 +62,11 @@ data PolarGrid = PolarGrid { gridColor :: Color
                            , rStep     :: Float
                            }
 
-polarGrid :: Color -> Float -> Float -> PolarGrid
+-- | Creates a circular/polar grid.
+polarGrid :: Color -- ^ Grid color.
+          -> Float -- ^ Angular grid step.
+          -> Float -- ^ Radial grid step.
+          -> PolarGrid
 polarGrid = PolarGrid
 
 instance ToPicture PolarGrid where

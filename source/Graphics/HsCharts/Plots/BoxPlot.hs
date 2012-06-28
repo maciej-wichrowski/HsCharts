@@ -1,6 +1,11 @@
+-- | Renders vertical boxplots from sets of data. The median and quantiles are 
+--   calculated by the module and don't have to be provided by the user.
+--
+--   The data is to be provided as 'Point2' values. Boxes are grouped by x's.
 module Graphics.HsCharts.Plots.BoxPlot
 (
       BoxPlot
+    -- * Constructors
     , boxPlot
     , defaultBoxPlot
 ) where
@@ -15,10 +20,13 @@ data BoxPlot = BoxPlot { boxColor :: Color
                        , points   :: [Point2] }
 
 -- | Box plot constructor.
-boxPlot :: Color -> Float -> [Point2] -> BoxPlot
+boxPlot :: Color    -- ^ Box fill color.
+        -> Float    -- ^ Box width in pixels.
+        -> [Point2] -- ^ Data series to be plotted.
+        -> BoxPlot
 boxPlot = BoxPlot
 
--- | Creates a box plot with the default fill color (white) and width (20)
+-- | Creates a box plot with the default fill color (white) and width (20px)
 defaultBoxPlot :: [Point2] -> BoxPlot
 defaultBoxPlot = BoxPlot white 20
 
@@ -27,7 +35,7 @@ defaultBoxPlot = BoxPlot white 20
 instance ToPicture BoxPlot where
     toPicture = boxPlotToPicture
 
-
+boxPlotToPicture :: BoxPlot -> AxisScale -> AxisScale -> Picture
 boxPlotToPicture b xAxis yAxis = pictures $ zipWith box xs yss
     where 
         groups   = groupBy (\(x1, _) (x2, _) -> x1 == x2) $ sort (points b)

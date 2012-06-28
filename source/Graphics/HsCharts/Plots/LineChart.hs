@@ -1,6 +1,7 @@
 module Graphics.HsCharts.Plots.LineChart
 (
       LineChart
+    -- * Constructors
     , lineChart
     , defaultLineChart
 ) where
@@ -16,6 +17,7 @@ data LineChart = LineChart { lineColor  :: Color
 lineChart :: Color -> [Point2] -> LineChart
 lineChart = LineChart
 
+-- | Creates a default (black) line chart.
 defaultLineChart :: [Point2] -> LineChart
 defaultLineChart = lineChart black
 
