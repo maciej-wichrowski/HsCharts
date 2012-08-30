@@ -70,10 +70,12 @@ autoAxisScale :: AxisScaleType -- ^ The type of axis scale.
               -> Float         -- ^ Axis length.
               -> [Float]       -- ^ Points to be fitted on the axis.
               -> AxisScale
+autoAxisScale t len []  = fixedAxisScale t len 0 1
 autoAxisScale t len pts = fixedAxisScale t len (minimum pts) (maximum pts)
 
 -- | Same as 'autoScaleAxis', but always includes the origin.
 autoAxisScale' :: AxisScaleType -> Float -> [Float] -> AxisScale
+autoAxisScale' t len []  = fixedAxisScale t len 0 1
 autoAxisScale' t len pts = fixedAxisScale t len (minimum [0, minimum pts])
                                                 (maximum [0, maximum pts])
 
