@@ -1,7 +1,7 @@
 HsCharts
 ========
 
-A chart drawing module for Haskell, using the Gloss drawing package. 
+A chart drawing module for Haskell, using the Gloss drawing package.
 
 Features
 --------
@@ -18,6 +18,7 @@ Features
   - Polar coordinate plotting
 
 See the file `demo/Main.hs` for a usage example of each type of chart in the library.
+![Chart examples](HsChartsDemo.png)
 
 Requirements
 ------------
@@ -38,7 +39,7 @@ To build and run the demo application, perform the following steps:
 1. Go to the `demo/` directory.
 2. Build and install the demo: `cabal install`
 3. Start the demo using `HsChartsDemo`
-
+ 
 License
 -------
 HsCharts is licensed under BSD3, see `LICENSE` for the complete license.
